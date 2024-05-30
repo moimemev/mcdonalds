@@ -1,0 +1,225 @@
+@charset "utf-8";
+
+/* 폰트설정하기 */
+body{font-family: '맑은 고딕', 'Malgun Gothic', '돋움', 'dotum', Arial , 'Apple SD Gothic Neo', sans-serif; font-size: 16px; line-height: 1.9; font-weight: 500; color: #808080;}
+
+/* 초기화 */
+body,ul,ol,li,h1,h2,h3,h4,h5,h6,p,fieldset{margin: 0; padding: 0;}
+ul,ol,li{list-style: none;}
+img{ vertical-align: middle;}
+a{text-decoration: none; color: inherit;}
+fieldset{border: 0;}
+legend{display: block; width: 0; height: 0; overflow: hidden; text-indent: -9999px;}
+button{border: 0; cursor: pointer; background: transparent;}
+
+/* ================================================
+공통 레이아웃
+================================================ */
+.headArea , .footArea , .inner{width: 1168px; margin: 0 auto;}
+.headArea::after{content:""; display: block; clear: both;}
+
+/* ================================================
+헤더영역
+================================================ */
+.header{position: absolute; left: 0; top: 0; width: 100%; z-index:9999; background:#fff; }
+.header.fixed{position:fixed; }
+.header.open{height:480px;}
+
+/* 헤더 밑줄 */
+.header.open::before{
+    content:""; display: block; background: #e2e2e2;
+    position: absolute; top: 80px; left: 0; width: 100%; height:1px;
+}
+
+/* 로고 */
+.header .hLogo{float: left; padding-top: 18px;}
+.header .hLogo img{height:45px;}
+
+.header .hMenu{float: left; margin-left: 130px;}
+
+/* depth1 */
+.header .hMenu .menu .depth1::after{content:""; display: block; clear: both;}
+.header .hMenu .menu .depth1 > li{float: left; position: relative; }
+
+/* 메뉴 넓이 잡아주기 */
+.header .hMenu .menu .depth1 > li > .dth1{
+    position: relative;
+    display: block; padding:0 10px; line-height: 80px; font-size: 20px; font-weight: 600; color: #292929; 
+    margin-right: 85px; 
+ }
+
+ /* depth1 밑줄 */
+ .header .hMenu .menu .depth1 > li:hover > .dth1::after{content: ""; position: absolute; left: 0; bottom: -3px; z-index: 2; width: 100%; height: 3px; background-color: #f5bd43;}
+
+ /* 끝 메뉴 마진 없애기 */
+ .header .hMenu .menu .depth1 > li:last-child > .dth1{margin-right: 0;}
+
+/* depth2 */
+.header .hMenu .menu .depth2{position: absolute; left: 50%; top: 80px; width: 100%; transform: translateX(-50%); 
+    display: none;  /*depth2 숨기기*/
+ }
+
+ /* depth2 메뉴 보이기 */
+ .header.open .hMenu .menu .depth2{display: block;}
+
+.header .hMenu .menu .depth2 > li{margin-top: 15px; } /* 메뉴간 여백 */
+
+/* 메뉴 길이만큼만 밑줄 긋기 위해 inline-block으로 지정함 */
+.header .hMenu .menu .depth2 > li > .dth2{ 
+    display: inline-block; line-height: 1.6; border-bottom: 1px solid transparent; 
+    white-space: nowrap;
+} 
+
+/* 서브메뉴 호버 시 밑줄 생성 */
+.header .hMenu .menu .depth2 > li:hover > .dth2{border-bottom: 1px solid #000; color: #000; } 
+
+/* 유틸 */
+.header .util{float: right; margin-top: 20px; 
+    font-size: 0;
+} 
+
+.header .util .renter{background-color: #db0007; display: inline-block; width: 80px; line-height: 34px; text-align: center; border-radius: 48px; font-size: 13px; font-weight: 600; color: #fff; }
+
+.header .util .recruit{margin-left: 8px; background-color: #d87200; display: inline-block; width: 80px; line-height: 34px; text-align: center; border-radius: 48px; font-size: 13px; font-weight: 600; color: #fff;}
+
+.header .util .lang{margin-left: 8px; background-color: #264a36; display: inline-block; width: 80px; line-height: 34px; text-align: center; border-radius: 48px; font-size: 13px; font-weight: 600; color: #fff;}
+
+.header .util .topSearch{display: inline-block;}
+.header .util .topSearch .srch{
+    width: 36px; height: 36px;margin-left: 26px; text-indent: -9999px;
+    background: url(../images/ico_search.png) no-repeat;
+}
+
+/* 버튼 누르면 열리는 전체 영역 */
+.topSearch .srchField{
+    position: fixed; width: 1168px; left: 50%; top: 80px; transform: translateX(-50%); 
+    z-index: 9999; 
+    text-align: center; 
+    display: none; /* 초기에 숨기기 */
+}
+.topSearch.open .srchField{display: block;}
+
+/* 어두운 배경 */
+.topSearch .dimmed{
+    position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8);
+    display: none;}
+
+.topSearch.open .dimmed{display: block;}
+
+/* 검색 입력창 */
+.topSearch .srchField .sch input[type="text"]{width: 984px; height: 70px; border-radius: 35px; padding: 0 38px; border: 1px solid #d1d1d1; font-size: 18px; color: #292929; box-sizing: border-box;}
+
+/* 검색하기 버튼 */
+/* 사이즈 설정 */
+.topSearch .srchField .sch .btnM{width: 172px; height: 70px; border-radius: 35px; margin-left: 12px; font-size: 15px; }
+
+/* 색상설정 */
+.topSearch .srchField .sch .btnMC{background-color: #ffbc0d; color: #292929; font-weight: 600;}
+
+/* 검색창 닫기 */
+.topSearch .srchField .close{width: 90px; height: 90px; text-indent: -9999px;background: url(../images/btn_close.png) no-repeat 0 0; margin-top: 100px;}
+
+/* ================================================
+메인비주얼 영역
+================================================ */
+.mainSlide{margin-top: 80px;}
+.swiper-button-prev{
+    left:0;
+    width:90px;
+    height:90px;
+    background: url(../images/bg_swiper_new.png) no-repeat 0 0;
+}
+
+.swiper-button-next{
+    right:0;
+    width:90px;
+    height:90px;    
+    background: url(../images/bg_swiper_new.png) no-repeat 0 -90px;
+}
+
+/* 비활성화일 때 흐리게 표시하지 않기 */
+.mainSlide .swiper-button-next.swiper-buttton-disabled,
+.mainSlide .swiper-button-prev.swiper-buttton-disabled{
+    opacity:1;    
+    pointer-events:none;
+}
+
+.mainSlide .swiper-button-next::after{display: none;}
+.mainSlide .swiper-button-prev::after{display: none;}
+
+/* 블릿 디자인 */
+.mainSlide .swiper-pagination{bottom:20px;}
+.mainSlide .swiper-pagination .swiper-pagination-bullet{
+    width:20px; height:20px;
+}
+
+/* 액티브 색상 */
+.mainSlide .swiper-pagination .swiper-pagination-bullet-active{    
+    background:#150f00;
+}
+
+/* ================================================
+맥도날드 라이브 영역
+================================================ */
+.contArea{padding: 30px 0 60px;}
+.mainCont{}
+
+/* 타이틀 */
+.mainCont .titMain{margin-bottom: 60px;font-size: 40px; font-weight: 600; line-height: 1;color: #292929;}
+
+/* 여러줄 아이템 왼쪽 마진 없애기 */
+.mainCont .whatsNew{margin-left: -35px;}
+
+/* li float에대한 클리어 픽스
+여기에서 overflow:hidden은 박스쉐도우가 잘리기 때문에 쓰지 않는다 */
+.mainCont .whatsNew::after{content: ""; display: block; clear: both;}
+
+.mainCont .whatsNew li{height: 438px; float: left; margin: 0 0 35px 35px;}
+
+/* a링크 면적 넓히기, 꾸미기 */
+.mainCont .whatsNew li a{display: block; height: 100%; border-radius: 10px; 
+    overflow: hidden; /* bdrs적용되지 않는 사진테두리 처리 */
+    background-color: #fff; box-shadow: 0 3px 4px 0 rgba(0,0,0,0.1);}
+
+.mainCont .whatsNew li a .con{padding: 24px 30px;}
+.mainCont .whatsNew li a .con .tit{display: block; width: 306px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; font-size: 18px; line-height: 1.7; font-weight: 600; color: #292929;}
+
+/* ================================================
+푸터
+================================================ */
+.footer{font-size: 14px; line-height: 1.6; background-color: #292929; color: #fff;}
+.footer .footArea{padding: 45px 0 55px;}
+.footer .footArea::after{content: ""; display: block; clear: both;}
+
+.footer .fUtil{float: left; width: 190px;}
+.footer .fUtil .privacy{color: #ffff00;}
+.footer .fUtil li + li{margin-top: 5px;}
+.footer .fSns{float: right;}
+.footer .fSns li{float: left; }
+.footer .fSns li + li{margin-left: 20px;}
+.footer .fSns li a{display: block; width: 40px; height: 40px; }
+.footer .fSns li a span{display: block; text-indent: -9999px;}
+.footer .fSns li .fb{background: url(../images/ico_sns.png) no-repeat 0 0;}
+.footer .fSns li .ig{background: url(../images/ico_sns.png) no-repeat 0 -40px ;}
+.footer .fSns li .yt{background: url(../images/ico_sns.png) no-repeat 0 -80px;}
+.footer .fSns li .ks{background: url(../images/ico_sns.png) no-repeat 0 -120px;}
+.footer .fSns li .web{width: 100px;}
+.footer .fSns li .web img{width: 100%;}
+.footer .fInfo{float: left; font-weight: 400; opacity: 0.6;}
+.footer .fInfo .info li + li{margin-top: 5px;}
+.footer .fInfo .copy{margin-top: 5px;}
+
+
+/* ================================================
+aside
+================================================ */
+.aside{position: fixed; bottom:110px; left:49%; margin:0 0 0 635px; z-index:10; text-align: center; display: none;}
+.aside a{display: block; width:121px; height:121px; text-indent:-9999px;}
+.aside a.goStory{background: url(../images/btn_story_04.png) no-repeat center top;}
+.aside a.goDelivery{background: url(../images/btn_delivery_04.png) no-repeat center top; margin-top: 20px;}
+.aside .btnTop{ 
+    width: 51px; height: 48px;    
+    background: url(../images/btn_top_04.png) no-repeat center top;
+    text-indent:-9999px;
+    margin-top: 20px;
+}
